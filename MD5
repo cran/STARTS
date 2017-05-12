@@ -1,0 +1,9 @@
+29be94fac5da2e008e02102d799b3fcf *DESCRIPTION
+644bfc747e6bcea74f842c05d549deab *NAMESPACE
+476d2d153c0da3b3fa412e729ff71e86 *R/starts_cov.R
+d85735dc4d4081628452db77a3e95621 *R/starts_sim1dim.R
+84a65f37b5355d33089768f4cca28440 *R/zzz.R
+0f2978ffb49892dec72925ac7075f75a *inst/CITATION
+d67eba66dd09c7b3379a9eeaf130e20e *inst/NEWS
+9c410153154c6d10340da69d51abbf0f *man/STARTS-package.Rd
+0cfc8f71f93a0a603af97b9aab8c2bc7 *man/starts_cov.Rd
