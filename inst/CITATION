@@ -10,7 +10,7 @@ citEntry(entry="Manual",
          note = vers,
 	 url = "https://CRAN.R-project.org/package=STARTS" ,
          textVersion =
-         paste0("Robitzsch, A. (",  year,"). 
+         paste0("Robitzsch, A., & Luedtke, O. (",  year,"). 
                STARTS: Functions for the STARTS model. ",
                vers, 
                ". https://CRAN.R-project.org/package=STARTS")
