@@ -1,8 +1,8 @@
 Package: STARTS
 Type: Package
 Title: Functions for the STARTS Model
-Version: 0.1-51
-Date: 2017-08-27 15:04:27
+Version: 0.2-10
+Date: 2017-11-24 17:27:18
 Author: Alexander Robitzsch [aut,cre], Oliver Luedtke [aut]
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
@@ -10,11 +10,11 @@ Description:
     Kenny and Zautra (1995, 2001) <DOI:10.1037/0022-006X.63.1.52>,
     <DOI:10.1037/10409-008>.
 Depends: R (>= 3.1)
-Imports: CDM, LAM, sirt (>= 2.0), stats, utils
+Imports: CDM (>= 6.0), graphics, LAM, sirt (>= 2.3), stats, utils
 Suggests: lavaan
 URL: https://github.com/alexanderrobitzsch/STARTS
 License: GPL (>= 2)
 NeedsCompilation: no
-Packaged: 2017-08-27 13:04:30 UTC; sunpn563
+Packaged: 2017-11-24 16:27:24 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2017-08-27 13:15:17 UTC
+Date/Publication: 2017-11-24 16:40:33 UTC
