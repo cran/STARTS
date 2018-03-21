@@ -1,5 +1,5 @@
 %% File Name: starts_uni.Rd
-%% File Version: 0.36
+%% File Version: 0.44
 
 \name{starts_uni}
 \alias{starts_uni_cov}
@@ -41,7 +41,7 @@ starts_uni_estimate(data = NULL, covmat = NULL, nobs = NULL, estimator = "ML",
     est_var_ar = TRUE, est_var_state = TRUE, var_meas_error = 0, constraints = TRUE, 
     time_index = NULL, type = "stationary", n.burnin=5000, n.iter=20000)
 
-\method{summary}{starts_uni}(object, digits = 3, file = NULL, ...)
+\method{summary}{starts_uni}(object, digits = 3, file = NULL, print_call=TRUE, ...)
 
 \method{plot}{starts_uni}(x, ...)
 
@@ -52,13 +52,14 @@ starts_uni_estimate(data = NULL, covmat = NULL, nobs = NULL, estimator = "ML",
 \method{vcov}{starts_uni}(object, ...)
 
 ## computation of covariance matrix 
-starts_uni_cov(W, var_trait, var_ar, var_state, a, time_index = NULL )
+starts_uni_cov(W, var_trait, var_ar, var_state, a, time_index = NULL, 
+       add_meas_error = NULL)
 
 ## simulation of STARTS model
 starts_uni_sim(N, W, var_trait, var_ar, var_state, a, time_index = NULL )
 
 #--- deprecated functions
-starts_cov(W, var_trait, var_ar, var_state, a )
+starts_cov(W, var_trait, var_ar, var_state, a)
 starts_sim1dim(N, W, var_trait, var_ar, var_state, a )
 }
 
@@ -149,10 +150,14 @@ Stability parameter
 \item{object}{Object of class \code{starts_uni}}
 \item{digits}{Number of digits after decimal in \code{summary} output}
 \item{file}{Optional file name for \code{summary} output}
+\item{print_call}{Logical indicating whether call should be printed in \code{summary}
+output}
 \item{x}{Object of class \code{starts_uni}}
 \item{\dots}{Further arguments to be passed. For the \code{plot} method,
 see the \code{plot} method for the \code{\link[LAM:amh]{LAM::amh}} 
 function for arguments}
+\item{add_meas_error}{Optional vector of measurement error variance which
+should be added to the diagonal of the covariance matrix.}
 }
 
 %%   'object' 'digits' 'file' '...'
@@ -212,8 +217,7 @@ Alexander Robitzsch
 %%}
 
 
-\examples{
-\dontrun{    
+\examples{    
 #############################################################################
 # EXAMPLE 1: STARTS model specification using starts_uni_estimate  
 #############################################################################  
@@ -230,6 +234,11 @@ nobs <- nrow(dat)
 #*** Model 1a: STARTS model with ML estimation 
 mod1a <- STARTS::starts_uni_estimate( covmat=covmat, nobs=nobs)
 summary(mod1a)
+
+\dontrun{
+#- estimate model based on input data
+mod1a1 <- STARTS::starts_uni_estimate( data = dat[ , paste0("E",1:5) ])
+summary(mod1a1)
 
 #*** Model 1b: STARTS model with penalized ML estimation using the default priors
 mod1b <- STARTS::starts_uni_estimate( covmat=covmat, nobs=nobs, estimator="PML")
