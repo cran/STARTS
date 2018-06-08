@@ -1,5 +1,5 @@
 %% File Name: starts_uni.Rd
-%% File Version: 0.44
+%% File Version: 0.55
 
 \name{starts_uni}
 \alias{starts_uni_cov}
@@ -27,10 +27,7 @@ Functions for computing the covariance matrix and simulating data
 from the univariate STARTS model (Kenny & Zautra, 1995, 2001). The STARTS model can
 be estimated with maximum likelihood, penalized maximum likelihood (i.e., 
 maximum posterior estimation) or Markov Chain Monte Carlo. 
-See Luedtke et al. (xxxx) for comparisons among estimation methods.
-
-Missing data cannot be handled in the recent package version. Full information
-maximum likelihood will be included in future package versions. 
+See Luedtke, Robitzsch and Wagner (xxxx) for comparisons among estimation methods.
 }
 
 \usage{
@@ -39,7 +36,8 @@ starts_uni_estimate(data = NULL, covmat = NULL, nobs = NULL, estimator = "ML",
     pars_inits = NULL, prior_var_trait = c(3, 0.33), prior_var_ar = c(3, 0.33), 
     prior_var_state = c(3, 0.33), prior_a = c(3, 0.5), est_var_trait = TRUE, 
     est_var_ar = TRUE, est_var_state = TRUE, var_meas_error = 0, constraints = TRUE, 
-    time_index = NULL, type = "stationary", n.burnin=5000, n.iter=20000)
+    time_index = NULL, type = "stationary", n.burnin=5000, n.iter=20000,
+    verbose=FALSE, optim_fct = "optim", use_rcpp=TRUE )
 
 \method{summary}{starts_uni}(object, digits = 3, file = NULL, print_call=TRUE, ...)
 
@@ -67,7 +65,7 @@ starts_sim1dim(N, W, var_trait, var_ar, var_state, a )
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-Data frame
+Data frame. Missing data must be coded as \code{NA}.
 }
   \item{covmat}{
 Covariance matrix (not necessary if \code{data} is provided)
@@ -76,16 +74,18 @@ Covariance matrix (not necessary if \code{data} is provided)
 Number of observations (not necessary if \code{data} is provided)
 }
   \item{estimator}{
-Type of estimator: \code{"ML"} for maximum likelihood estimation,
-\code{"PML"} for penalized maximum likelihood estimation and
-\code{"MCMC"} for Markov chain Monte Carlo estimation.
+Type of estimator: \code{"ML"} for maximum likelihood estimation
+(using \code{\link[LAM:pmle]{LAM::pmle}}),
+\code{"PML"} for penalized maximum likelihood estimation (using \code{\link[LAM:pmle]{LAM::pmle}}) 
+and \code{"MCMC"} for Markov chain Monte Carlo estimation
+(using \code{\link[LAM:amh]{LAM::amh}}).
 }
   \item{pars_inits}{
 Optional vector of initial parameters
 }
   \item{prior_var_trait}{
 Vector of length two specifying the inverse gamma prior for trait variance. The first entry
-is teh prior sample size, the second entry the guess of the proportion
+is the prior sample size, the second entry the guess of the proportion
 of the variance that is attributed to the trait variance. See Luedtke et al. (xxxx)
 for further details.  
 }
@@ -129,6 +129,14 @@ package version.
 }
 \item{n.burnin}{Number of burn-in iterations (if \code{estimator="MCMC"})}
 \item{n.iter}{Total number of iterations (if \code{estimator="MCMC"})}
+\item{verbose}{Logical indicating whether iteration progress should be
+displayed (if \code{estimator="ML"} or \code{estimator="PML"})}
+\item{optim_fct}{Type of optimization function if \code{estimator="ML"} or 
+\code{estimator="PML"}. Can be \code{"optim"} for \code{\link[stats:optim]{stats::optim}}
+or \code{"nlminb"} for \code{\link[stats:nlminb]{stats::nlminb}}.
+}
+\item{use_rcpp}{Logical indicating whether \pkg{Rcpp} code should be used in 
+estimation.}
 \item{W}{
 Number of measurement waves.
 }
@@ -184,8 +192,7 @@ Output of \code{starts_uni_sim} is a data frame containing simulated values.
 \references{
 Kenny, D. A., & Zautra, A. (1995). The trait-state-error 
 model for multiwave data. 
-\emph{Journal of Consulting and Clinical Psychology}, 
-\bold{63}, 52-59.
+\emph{Journal of Consulting and Clinical Psychology, 63}, 52-59.
 
 Kenny, D. A., & Zautra, A. (2001). Trait-state models for 
 longitudinal data. In L. M. Collins & A. G. Sayer (Eds.), 
@@ -194,12 +201,7 @@ Washington, DC, US: American Psychological Association.
 
 Luedtke, O., Robitzsch, A., & Wagner, J. (xxxx). More stable estimation of the STARTS model:  
 A Bayesian approach using Markov Chain Monte Carlo techniques. 
-\emph{Psychological Methods}, \bold{xx}, xxx-xxx.
-
-Wu, P.-C. (2016). Longitudinal stability of the Beck 
-Depression Inventory II: A latent traitstate-occasion model. 
-\emph{Journal of Psychoeducational Assessment}, 
-\bold{34}, 39-53.
+\emph{Psychological Methods, xx}, xxx-xxx.
 }
 
 \author{
@@ -218,6 +220,8 @@ Alexander Robitzsch
 
 
 \examples{    
+library(sirt)
+
 #############################################################################
 # EXAMPLE 1: STARTS model specification using starts_uni_estimate  
 #############################################################################  
