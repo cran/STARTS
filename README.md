@@ -7,7 +7,7 @@ If you use `STARTS` and have suggestions for improvement or have found bugs, ple
 #### CRAN version
 
 <!---
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/STARTS)](https://cran.r-project.org/package=STARTS)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/STARTS)](https://cran.r-project.org/package=STARTS)
 &#160;&#160;
 -->
 
