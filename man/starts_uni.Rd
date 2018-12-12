@@ -1,5 +1,5 @@
 %% File Name: starts_uni.Rd
-%% File Version: 0.62
+%% File Version: 0.65
 
 \name{starts_uni}
 \alias{starts_uni_cov}
@@ -204,9 +204,12 @@ A Bayesian approach using Markov Chain Monte Carlo techniques.
 \emph{Psychological Methods, 23}(3), 570-593.
 }
 
-\author{
-Alexander Robitzsch
-}
+
+%\author{
+%Alexander Robitzsch
+%}
+
+
 
 %\note{
 %%  ~~further notes~~
@@ -226,7 +229,7 @@ library(sirt)
 # EXAMPLE 1: STARTS model specification using starts_uni_estimate
 #############################################################################
 
-## use simulated dataset according to Luedtke et al. (xxxx)
+## use simulated dataset according to Luedtke et al. (2017)
 
 data(data.starts01a, package="STARTS")
 dat <- data.starts01a
@@ -235,11 +238,11 @@ dat <- data.starts01a
 covmat <- stats::cov( dat[, paste0("E",1:5) ] )
 nobs <- nrow(dat)
 
+\dontrun{
 #*** Model 1a: STARTS model with ML estimation
 mod1a <- STARTS::starts_uni_estimate( covmat=covmat, nobs=nobs)
 summary(mod1a)
 
-\dontrun{
 #- estimate model based on input data
 mod1a1 <- STARTS::starts_uni_estimate( data=dat[, paste0("E",1:5) ])
 summary(mod1a1)
