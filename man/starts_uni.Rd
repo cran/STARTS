@@ -1,5 +1,5 @@
 %% File Name: starts_uni.Rd
-%% File Version: 0.65
+%% File Version: 0.67
 
 \name{starts_uni}
 \alias{starts_uni_cov}
@@ -86,7 +86,7 @@ Optional vector of initial parameters
   \item{prior_var_trait}{
 Vector of length two specifying the inverse gamma prior for trait variance. The first entry
 is the prior sample size, the second entry the guess of the proportion
-of the variance that is attributed to the trait variance. See Luedtke et al. (xxxx)
+of the variance that is attributed to the trait variance. See Luedtke et al. (2018)
 for further details.
 }
   \item{prior_var_ar}{
@@ -238,11 +238,11 @@ dat <- data.starts01a
 covmat <- stats::cov( dat[, paste0("E",1:5) ] )
 nobs <- nrow(dat)
 
-\dontrun{
 #*** Model 1a: STARTS model with ML estimation
 mod1a <- STARTS::starts_uni_estimate( covmat=covmat, nobs=nobs)
 summary(mod1a)
 
+\dontrun{
 #- estimate model based on input data
 mod1a1 <- STARTS::starts_uni_estimate( data=dat[, paste0("E",1:5) ])
 summary(mod1a1)

@@ -1,5 +1,5 @@
 ## File Name: starts_uni_estimate_variance_proportions_pml.R
-## File Version: 0.17
+## File Version: 0.23
 
 starts_uni_estimate_variance_proportions_pml <- function( coef, vcov, vars )
 {
@@ -14,17 +14,9 @@ starts_uni_estimate_variance_proportions_pml <- function( coef, vcov, vars )
     val <- parm_fct(x=par)
 
     #--- compute gradient
-    A <- matrix( 0, nrow=NV, ncol=NV)
-    rownames(A) <- vars
-    colnames(A) <- vars
-    indices1 <- match( vars, colnames(A) )
+    indices1 <- match( vars, names(coef) )
     vcov <- vcov[indices1, indices1]
-    indices <- 1:NV
-    for (cc in indices){
-        res <- CDM::numerical_Hessian_partial( par=par[vars], FUN=parm_fct, coordinate=cc )
-        # A[,cc] <- res$grad
-        A[cc,] <- res$grad
-    }
+    A <- CDM::numerical_gradient(par=par, FUN=parm_fct)
     vcov_prop <- A %*% vcov %*% t(A)
     var_prop <- data.frame( parm=vars, est=val, se=sqrt( diag(vcov_prop) ) )
     var_prop$t <- var_prop$est / var_prop$se
