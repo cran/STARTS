@@ -1,8 +1,8 @@
 Package: STARTS
 Type: Package
 Title: Functions for the STARTS Model
-Version: 1.1-6
-Date: 2018-12-13 16:11:57
+Version: 1.2-35
+Date: 2019-11-04 15:18:11
 Author: Alexander Robitzsch [aut,cre], Oliver Luedtke [aut]
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
@@ -21,6 +21,6 @@ URL: https://github.com/alexanderrobitzsch/STARTS,
         https://sites.google.com/site/alexanderrobitzsch2/software
 License: GPL (>= 2)
 NeedsCompilation: yes
-Packaged: 2018-12-13 15:12:37 UTC; sunpn563
+Packaged: 2019-11-04 14:18:51 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2018-12-13 23:12:10 UTC
+Date/Publication: 2019-11-04 14:50:09 UTC

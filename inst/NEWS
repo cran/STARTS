@@ -24,6 +24,15 @@ and (if necessary) a corresponding dataset.
 
 
 ------------------------------------------------------------------------
+VERSIONS STARTS 1.2  |  2019-11-04  |  Last: STARTS 1.2-35
+------------------------------------------------------------------------
+
+NOTE  * included datasets of Wagner, Luedtke and Trautwein (2016, JOP)
+
+DATA  * included/modified datasets: data.starts03
+EXAMP * included/modified examples: ---
+
+------------------------------------------------------------------------
 VERSIONS STARTS 1.1  |  2018-12-13  |  Last: STARTS 1.1-6
 ------------------------------------------------------------------------
 
